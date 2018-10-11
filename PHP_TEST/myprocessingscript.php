@@ -1,3 +1,9 @@
+<p>This is a form test.</p>
+<form action="myprocessingscript.php" method="POST">
+    <input name="field1" type="text" />
+    <input name="field2" type="text" />
+    <input type="submit" name="submit" value="Save Data">
+</form>
 <?php
 if(isset($_POST['field1']) && isset($_POST['field2'])) {
     $data = $_POST['field1'] . '-' . $_POST['field2'] . "\r\n";
