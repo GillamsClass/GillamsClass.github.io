@@ -2,17 +2,13 @@
 <html>
   <p>Example Text</p>
   <div>Example Text 2</div>
-<li type="button" onclick="swapstylesheet('nightmode.css')">Night Mode</li>
-<li type="button" onclick="swapstylesheet('lightmode.css')">Day Mode</li>
+  <button onclick="swapStyleSheet('lightmode.css')">Light Mode</button>
+  <button onclick="swapStyleSheet('nightmode.css')">Night Mode</button>
 </body>
-    <script type="text/javascript">
-        function swapstylesheet('lightmode.css'){
-document.getElementById('pagestyle').setAttribute('href', 'lightmode.css')
-}
-    </script>
+ <link id="pagestyle" rel="stylesheet" type="text/css" href="lightmode.css">
 <script>
-         function swapstylesheet('nightmode.css'){
-document.getElementById('pagestyle').setAttribute('href', 'nightmode.css')
+function swapStyleSheet(sheet){
+	document.getElementById('pagestyle').setAttribute('href', sheet);
 }
 </script>
 </html>
