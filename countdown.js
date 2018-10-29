@@ -1,4 +1,4 @@
-var countDownDate = new Date("Oct 12, 2018 14:15:00").getTime();
+var countDownDate = new Date("Dec 24, 2018 14:15:00").getTime();
 var x = setInterval(function() {
 var now = new Date().getTime();    
 var distance = countDownDate - now;    
@@ -10,6 +10,6 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     + minutes + "m " + seconds + "s ";
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "It is fall break! next countdown will be for winter break!";
+        document.getElementById("demo").innerHTML = "It is winter break! next countdown will be for spring break!";
     }
 }, 1000);
