@@ -15,7 +15,7 @@
         var confirmPassword = "admin";
         var password = document.getElementById("pswd").value;
         if (password == confirmPassword) {
-        sessionStorage.setItem("Authenticated");
+        localStorage.setItem("Authenticated", "True");
              window.location="cookieclicker.html";
         }
         else{
