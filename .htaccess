@@ -1,5 +1,5 @@
 AuthName "Please Log In."
 AuthType Basic
-AuthUserFile gillamsclass.github.io/httpd.gillamsclass/cookieclicker.html/.htpasswd
+AuthUserFile gillamsclass.github.io/httpd/cookieclicker.html/.htpasswd
 AuthGroupFile /dev/null 
 require valid-user
