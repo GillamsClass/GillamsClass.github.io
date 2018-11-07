@@ -3,7 +3,7 @@
 <head>
 	<script>
 	var user=sessionStorage.getItem('Authenticate');
-if(user.length == 0)
+if(user == null)
 {
    window.location='cookieclickerauth.html';
 }
