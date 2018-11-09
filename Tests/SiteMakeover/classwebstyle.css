@@ -3,6 +3,7 @@
     src: url(sansation_light.woff);
 }
 .btn {
+  border-radius: 20px;
   background-color: #744253;
   border: none;
   color: #7192c6;
