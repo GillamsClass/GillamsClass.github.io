@@ -25,11 +25,11 @@ body {
         padding: 20px;
         margin: 20px;
         background-color: #c3d4e5;
-        border: 6px solid #744253;
+        border: 6px solid #9F9FAD;
         transition: 0.5s;
 }
 section:hover {
-        border: 5px solid #9F9FAD;
+        border: 5px solid #AECFDF;
     }
     h1 {
         color: #13315C;
