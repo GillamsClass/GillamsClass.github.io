@@ -25,7 +25,10 @@ body {
         padding: 20px;
         margin: 20px;
         background-color: #c3d4e5;
-        border: 6px solid #4f617c;
+        border: 6px solid #744253;
+}
+section:hover {
+        border: 6px solid #a31515;
     }
     h1 {
         color: #13315C;
