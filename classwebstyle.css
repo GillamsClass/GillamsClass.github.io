@@ -4,7 +4,7 @@
 }
 .btn {
   border-radius: 20px;
-  background-color: #744253;
+  background-color: #9F9FAD;
   border: none;
   color: #7192c6;
   padding: 16px 32px;
@@ -12,10 +12,10 @@
   font-size: 20px;
   margin: 4px 2px;
   font-family: sans-serif;
-  transition: 0.4s;
+  transition: 0.7s;
 }
 
-.btn:hover {background-color: #a31515;}
+.btn:hover {background-color: #AECFDF;}
 body {
         background-image: url("https://www.solidbackgrounds.com/images/website/950x534/950x534-blue-abstract-noise-free-website-background-image.jpg");
         font-family: sans-serif;
@@ -29,7 +29,7 @@ body {
         transition: 0.5s;
 }
 section:hover {
-        border: 8px solid #a31515;
+        border: 5px solid #9F9FAD;
     }
     h1 {
         color: #13315C;
