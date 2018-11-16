@@ -68,7 +68,7 @@ skylink.on('peerJoined', function (peerId, peerInfo, isSelf) {
   vid.autoplay = true;
   vid.controls = true;
   vid.setAttribute('playsinline', true);
-  vid.muted = true; // Added to avoid feedback when testing locally
+  vid.muted = false; // Added to avoid feedback when testing locally
   vid.id = peerId;
   document.body.appendChild(vid);
 });
