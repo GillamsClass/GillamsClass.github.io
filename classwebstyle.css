@@ -44,16 +44,12 @@ body {
     }
     a:active {
         color: #134074;
-    }
-    img {
-      display:block;
-    margin:auto;
           }
-.copyright{
+ .copyright {
         text-align: center;
         color: white;
         font-size: 17px;
         font-family: myFirstFont;
-        line-height: 5px
+        line-height: 5px;
       }
            
