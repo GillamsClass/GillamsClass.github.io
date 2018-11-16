@@ -1,0 +1,138 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/mmccall0813/pen/mQwgJN" />
+
+
+<style class="cp-pen-styles">header {
+  background: #eee;
+  padding: 20px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+header a:first-child {
+  float: right;
+  margin: 0 0 20px 30px;
+}
+
+button {
+  display: inline-block;
+  position: relative;
+  top: 110px;
+  left: 110px;
+  z-index: 10;
+}
+
+video {
+  width: 267px;
+  height: 200px;
+  border: 1px solid white;
+  outline: 1px solid #ccc;
+  z-index: 5;
+}
+
+#myvideo {
+  transform: rotateY(-180deg);
+}
+
+#start {
+  display: none;
+}</style></head><body>
+<html>
+<head>
+	<title>WebRTC with SkylinkJS</title>
+  
+	<script src="//cdn.temasys.io/skylink/skylinkjs/0.6.x/skylink.complete.js"></script>
+</head>
+<body>
+
+  <header>
+    <a href="https://temasys.github.io" target="_blank">SkylinkJS on Github</a>
+    You're in a private room. Please click &quot;Start&quot;, allow access to your microphone and camera and <a href="https://codepen.io/temasys/pen/GogabE" target="_blank">click here</a> to open this page in a new tab. You're joining yourself for a fun call ;)
+  </header>
+  
+  <p id="status">Loading room information...</p>
+ 
+  <div id="start">
+    <button  onclick="start(event)">Start</button><br/>
+    <video id="myvideo" controls="true" playsinline autoplay muted></video>
+  </div>
+  
+</body>
+</html>
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script>
+<script >var skylink = new Skylink();
+skylink.setLogLevel(4);
+skylink.on('peerJoined', function (peerId, peerInfo, isSelf) {
+  if (isSelf) return; // We already have a video element for our video and don't need to create a new one.
+  var vid = document.createElement('video');
+  vid.autoplay = true;
+  vid.controls = true;
+  vid.setAttribute('playsinline', true);
+  vid.muted = true; // Added to avoid feedback when testing locally
+  vid.id = peerId;
+  document.body.appendChild(vid);
+});
+
+skylink.on('incomingStream', function (peerId, stream, isSelf) {
+  if (isSelf) return;
+  var vid = document.getElementById(peerId);
+  attachMediaStream(vid, stream);
+});
+
+skylink.on('peerLeft', function (peerId) {
+  var vid = document.getElementById(peerId);
+  document.body.removeChild(vid);
+});
+
+skylink.on('mediaAccessSuccess', function (stream) {
+  var vid = document.getElementById('myvideo');
+  attachMediaStream(vid, stream);
+});
+
+skylink.init({
+  apiKey: '910a8640-a855-40ff-80bd-8e031adf9d68', // Get your own key at https://console.temasys.io
+  defaultRoom: 'MjM523' //getRoomId()
+}, function (error, success) {
+  if (error) {
+    document.getElementById('status').innerHTML = 'Failed retrieval for room information.<br>Error: ' + (error.error.message || error.error);
+  } else {
+    document.getElementById('status').innerHTML = 'Room information has been loaded. Room is ready for user to join.';
+    document.getElementById('start').style.display = 'block';
+  }
+});
+
+function start(event) {
+  event.target.style.visibility = 'hidden';
+
+  skylink.joinRoom({
+    audio: true,
+    video: true },
+  function (error, success) {
+    if (error) {
+      document.getElementById('status').innerHTML = 'Failed joining room.<br>' +
+      'Error: ' + (error.error.message || error.error);
+    } else {
+      document.getElementById('status').innerHTML = 'Joined room.';
+    }
+  });
+}
+
+
+/* Helper functions */
+
+function getRoomId() {
+  var roomId = document.cookie.match(/roomId=([a-z0-9-]{36})/);
+  if (roomId) {
+    return roomId[1];
+  } else
+  {
+    roomId = skylink.generateUUID();
+    var date = new Date();
+    date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+    document.cookie = 'roomId=' + roomId + '; expires=' + date.toGMTString() + '; path=/';
+    return roomId;
+  }
+};
+//# sourceURL=pen.js
+</script>
+</body></html>
