@@ -13,6 +13,7 @@
   margin: 4px 2px;
   font-family: sans-serif;
   transition: 0.4s;
+  cursor: pointer;
 }
 body {
         background-image: url("https://www.solidbackgrounds.com/images/website/950x534/950x534-blue-abstract-noise-free-website-background-image.jpg");
