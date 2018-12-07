@@ -1,4 +1,4 @@
-       @font-face {
+             @font-face {
     font-family: myFirstFont;
     src: url(sansation_light.woff);
 }
@@ -14,6 +14,10 @@
   font-family: sans-serif;
   transition: 0.4s;
   cursor: pointer;
+  animation-name: onload;
+  animation-duration: .4s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
 }
 #UNUSED { 
        background-image: url("https://www.solidbackgrounds.com/images/website/950x534/950x534-blue-abstract-noise-free-website-background-image.jpg");
@@ -28,6 +32,13 @@ body {
         margin: 20px;
         background-color: #c3d4e5;
         border: 6px solid #744253;
+          animation-name: onload;
+  animation-duration: .4s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+    }
+  @keyframes onload {
+    10% {opacity: .1;}
     }
     h1 {
         color: #13315C;
@@ -49,11 +60,3 @@ body {
     a:active {
         color: #134074;
           }
- .copyright {
-        text-align: center;
-        color: white;
-        font-size: 17px;
-        font-family: myFirstFont;
-        line-height: 5px;
-      }
-           
