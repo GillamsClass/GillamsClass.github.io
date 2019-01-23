@@ -10,6 +10,6 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     + minutes + "m " + seconds + "s ";
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "It is sping break! Next countdown will be for summer break!";
+        document.getElementById("demo").innerHTML = "It is spring break! Next countdown will be for summer break!";
     }
 }, 1000);
