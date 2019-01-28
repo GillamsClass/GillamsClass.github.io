@@ -1,0 +1,8 @@
+<p id="displayer"></p>
+<script>
+setInterval(function(){if(typeof(Storage) !== "undefined") {
+    if (localStorage.secondspassed) {
+      localStorage.secondspassed = Number(localStorage.secondspassed)+1;
+    } else {
+      localStorage.secondspassed = 1;} document.getElementById('displayer').innerHTML = localStorage.secondspassed;, 1000)
+</script>
