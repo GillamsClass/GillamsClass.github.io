@@ -1,0 +1,9 @@
+<script>function begin() {
+  document.getElementById('hiddendisplay').innerHTML = "1";
+  document.getElementById('warning').style.display = "none";
+  document.getElementById('button').style.display = "none";
+}
+setInterval(function(){if(document.getElementById('hiddendisplay').innerHTML == "1"){if(document.getElementById('body3').style.backgroundColor == "black"){document.getElementById('body3').style.backgroundColor = "white"}else{document.getElementById('body3').style.backgroundColor = "black"}}}, 10)</script>
+<style>#hiddendisplay {
+  display:none;
+}</style><body id="body3"><p id="warning">I am not responsible for any damage to eyes.</p><button onclick="begin()" id="button">Begin</button><p id="hiddendisplay"></p></body>
