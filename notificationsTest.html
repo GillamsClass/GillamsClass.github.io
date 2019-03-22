@@ -20,8 +20,10 @@ function displayNotification() {
             icon: 'images/xmark.png'},
         ]
       };
-      reg.showNotification('Hello world!', options);
+      if(d.getHours() == 10){if(d.getMinutes == 05){reg.showNotification('Hello world!', options)}}
     });
   }
+    var d = new Date();
+
 }</script>
 <button onclick="displayNotification()">Click me to send a notification</button>
