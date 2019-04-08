@@ -1,4 +1,4 @@
-var countDownDate = new Date("Mar 22, 2019 14:15:00").getTime();
+var countDownDate = new Date("May 30, 2019 14:15:00").getTime();
 var x = setInterval(function() {
 var now = new Date().getTime();    
 var distance = countDownDate - now;    
@@ -10,6 +10,6 @@ var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     + minutes + "m " + seconds + "s ";
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "It is spring break! Next countdown will be for summer break!";
+        document.getElementById("demo").innerHTML = "It is summer break! This counter will be deleted soon.";
     }
 }, 1000);
