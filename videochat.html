@@ -50,19 +50,19 @@ video {
 }</style></head><body>
 <html>
 <head>
-	<title>WebRTC with SkylinkJS</title>
+	<title>Class Video Chat</title>
   
 	<script src="//cdn.temasys.io/skylink/skylinkjs/0.6.x/skylink.complete.js"></script>
 </head>
 <body>
   
   <p id="status">Loading room information...</p>
- 
-  <div id="start">
+ <span id="vids">
+  <span id="start">
     <button id="button" onclick="start(event)">Start</button><br/>
     <video id="myvideo" controls="true" playsinline autoplay muted></video>
-  </div>
-	<div id="vids"></div>
+  </span>
+	</span>
   <br><br><br><br>
 	<div id="console"></div>
 	<br><br>
