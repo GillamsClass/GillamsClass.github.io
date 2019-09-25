@@ -25,6 +25,26 @@ video {
   outline: 1px solid #ccc;
   z-index: 5;
 }
+	#container {
+  position: relative;
+  border: 1px #ddd solid;
+  height: 180px;
+  overflow-y: auto;
+}
+
+#chatbox {
+  position: absolute;
+  bottom: 0px;
+}
+
+.action {
+  font-style: italic;
+  color: gray;
+}
+
+.you {
+  font-weight: bold;
+}
 #start {
   display: none;
 }</style></head><body>
@@ -44,6 +64,12 @@ video {
   </div>
   <br><br><br><br>
 	<div id="console"></div>
+	<br><br>
+	<input type="text" id="message" placeholder="My message" />
+    <button onclick="sendMessage()">Send message</button><br><br>
+	<div id="container">
+    <div id="chatbox"></div>
+  </div>
 </body>
 </html>
 <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script>
@@ -58,24 +84,60 @@ skylink.on('peerJoined', function (peerId, peerInfo, isSelf) {
   vid.muted = false; // Added to avoid feedback when testing locally
   vid.id = peerId;
   document.body.appendChild(vid);
-var user = 'You';
+  var user = 'You';
   if(!isSelf) {
     user = peerInfo.userData.name || peerId;
-  responsiveVoice.speak(user + 'joined the room.');}else{}
+  }
+  addMessage(user + ' joined the room', 'action');
+	responsiveVoice.speak(user + ' joined the room')
+});
+skylink.on('peerUpdated', function(peerId, peerInfo, isSelf) {
+  if(isSelf) {
+    user = peerInfo.userData.name || peerId;
+    addMessage('You\'re now known as ' + user, 'action');
+  }
 });
 skylink.on('incomingStream', function (peerId, stream, isSelf) {
   if (isSelf) return;
   var vid = document.getElementById(peerId);
   attachMediaStream(vid, stream);
 });
-skylink.on('peerLeft', function (peerId, peerInfo) {
+skylink.on('peerLeft', function (peerId, peerInfo, isSelf) {
   var vid = document.getElementById(peerId);
   document.body.removeChild(vid);
+	 var user = 'You';
+  if(!isSelf) {
+    user = peerInfo.userData.name || peerId;
+  }
+  addMessage(user + ' left the room', 'action');
+	responsiveVoice.speak()
 });
 skylink.on('mediaAccessSuccess', function (stream) {
   var vid = document.getElementById('myvideo');
   attachMediaStream(vid, stream);
 });
+skylink.on('incomingMessage', function(message, peerId, peerInfo, isSelf) {
+  var user = 'You',
+      className = 'you';
+  if(!isSelf) {
+    user = peerInfo.userData.name || peerId;
+    className = 'message';
+  }
+  addMessage(user + ': ' + message.content, className);
+});
+function sendMessage() {
+  var input = document.getElementById('message');
+  skylink.sendP2PMessage(input.value);
+  input.value = '';
+  input.select();
+}
+function addMessage(message, className) {
+  var chatbox = document.getElementById('chatbox'),
+    div = document.createElement('div');
+  div.className = className;
+  div.textContent = message;
+  chatbox.appendChild(div);
+}
 skylink.init({
   apiKey: '910a8640-a855-40ff-80bd-8e031adf9d68', // Get your own key at https://console.temasys.io
   defaultRoom: 'MjM523' //getRoomId()
