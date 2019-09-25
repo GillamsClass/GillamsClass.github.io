@@ -62,6 +62,7 @@ video {
     <button id="button" onclick="start(event)">Start</button><br/>
     <video id="myvideo" controls="true" playsinline autoplay muted></video>
   </div>
+	<div id="vids"></div>
   <br><br><br><br>
 	<div id="console"></div>
 	<br><br>
@@ -83,7 +84,7 @@ skylink.on('peerJoined', function (peerId, peerInfo, isSelf) {
   vid.setAttribute('playsinline', true);
   vid.muted = false; // Added to avoid feedback when testing locally
   vid.id = peerId;
-  document.body.appendChild(vid);
+  document.getElementById("vids").appendChild(vid);
   var user = 'You';
   if(!isSelf) {
     user = peerInfo.userData.name || peerId;
