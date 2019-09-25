@@ -111,7 +111,7 @@ skylink.on('peerLeft', function (peerId, peerInfo, isSelf) {
     user = peerInfo.userData.name || peerId;
   }
   addMessage(user + ' left the room', 'action');
-	responsiveVoice.speak()
+	responsiveVoice.speak(user + ' left the room')
 });
 skylink.on('mediaAccessSuccess', function (stream) {
   var vid = document.getElementById('myvideo');
@@ -155,7 +155,7 @@ skylink.init({
   }
 });
 function start(event) {
-  event.target.style.visibility = 'hidden';
+	if(document.getElementById("name").value != undefined){  event.target.style.visibility = 'hidden';
   skylink.joinRoom({
     audio: true,
     video: true },
@@ -167,6 +167,8 @@ function start(event) {
       document.getElementById('status').innerHTML = 'Joined room.';
     }
   });
+setName()
+}else{document.getElementById('status').innerHTML = '<span style="color=red">Please set a name first.</span>'}
 }
 /* Helper functions */
 function getRoomId() {
