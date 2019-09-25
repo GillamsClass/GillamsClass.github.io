@@ -49,6 +49,12 @@ video {
   </div>
   <br><br><br><br>
 	<div id="console"></div>
+	<br><br>
+	<button onclick="joinRoom()">Join room</button>
+    <button onclick="leaveRoom()">Leave room</button>
+    <br/>
+    <input type="text" id="message" placeholder="My message" />
+    <button onclick="sendMessage()">Send message</button>
 </body>
 </html>
 <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script>
@@ -65,6 +71,9 @@ skylink.on('peerJoined', function (peerId, peerInfo, isSelf) {
   document.body.appendChild(vid);
 var user = 'You';
   if(!isSelf) {
+	  var x = document.createElement("div");
+	  x.innerHTML = user+"joined the chat!";
+	  document.getElementById("console").appendChild()
     user = peerInfo.userData.name || peerId;
   responsiveVoice.speak(user + 'joined the room.');}else{}
 });
@@ -138,4 +147,75 @@ function setName() {
 }
 //# sourceURL=pen.js
 </script>
+	<script>
+		var skylink1 = new Skylink();
+
+skylink1.on('peerJoined', function(peerId, peerInfo, isSelf) {
+  var user = 'You';
+  if(!isSelf) {
+    user = peerInfo.userData.name || peerId;
+  }
+  addMessage(user + ' joined the room', 'action');
+});
+
+skylink1.on('peerUpdated', function(peerId, peerInfo, isSelf) {
+  if(isSelf) {
+    user = peerInfo.userData.name || peerId;
+    addMessage('You\'re now known as ' + user, 'action');
+  }
+});
+
+skylink1.on('peerLeft', function(peerId, peerInfo, isSelf) {
+  var user = 'You';
+  if(!isSelf) {
+    user = peerInfo.userData.name || peerId;
+  }
+  addMessage(user + ' left the room', 'action');
+});
+
+skylink1.on('incomingMessage', function(message, peerId, peerInfo, isSelf) {
+  var user = 'You',
+      className = 'you';
+  if(!isSelf) {
+    user = peerInfo.userData.name || peerId;
+    className = 'message';
+  }
+  addMessage(user + ': ' + message.content, className);
+});
+
+skylink1.init({
+  appKey: 'f1773757-5f8b-42dc-b1ef-2374066866f6',
+  defaultRoom: 'LGpMxj'
+}); // Get your own key at https://console.temasys.io
+
+function setName() {
+  var input = document.getElementById('name');
+  skylink1.setUserData({
+    name: input.value
+  });
+}
+
+function joinRoom() {
+  skylink1.joinRoom();
+}
+
+function leaveRoom() {
+  skylink1.leaveRoom();
+}
+
+function sendMessage() {
+  var input = document.getElementById('message');
+  skylink1.sendP2PMessage(input.value);
+  input.value = '';
+  input.select();
+}
+
+function addMessage(message, className) {
+  var chatbox = document.getElementById('chatbox'),
+    div = document.createElement('div');
+  div.className = className;
+  div.textContent = message;
+  chatbox.appendChild(div);
+}
+	</script>
 </body></html>
