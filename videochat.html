@@ -105,7 +105,7 @@ skylink.on('incomingStream', function (peerId, stream, isSelf) {
 });
 skylink.on('peerLeft', function (peerId, peerInfo, isSelf) {
   var vid = document.getElementById(peerId);
-  document.body.removeChild(vid);
+  document.getElementById("vids").removeChild(vid);
 	 var user = 'You';
   if(!isSelf) {
     user = peerInfo.userData.name || peerId;
