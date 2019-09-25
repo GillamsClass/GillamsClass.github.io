@@ -164,10 +164,10 @@ function start(event) {
       document.getElementById('status').innerHTML = 'Failed joining room.<br>' +
       'Error: ' + (error.error.message || error.error);
     } else {
-      document.getElementById('status').innerHTML = 'Joined room.';
+      document.getElementById('status').innerHTML = 'Joined room.';setName()
     }
   });
-setName()
+
 }else{document.getElementById('status').innerHTML = '<span style="color=red">Please set a name first.</span>'}
 }
 /* Helper functions */
