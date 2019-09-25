@@ -156,7 +156,7 @@ skylink.init({
   }
 });
 function start(event) {
-	if(document.getElementById("name").value != undefined){  event.target.style.visibility = 'hidden';
+	if(document.getElementById("name").value != ""){  event.target.style.visibility = 'hidden';
   skylink.joinRoom({
     audio: true,
     video: true },
