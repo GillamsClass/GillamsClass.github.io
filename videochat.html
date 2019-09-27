@@ -32,6 +32,9 @@ video {
   z-index: 5;
   display:inline;
 }
+	#status{
+	color:white;	
+	}
 	#container {
   position: relative;
   border: 1px #ddd solid;
@@ -51,6 +54,7 @@ video {
 
 .you {
   font-weight: bold;
+	color: white;
 }
 #start {
   display: none;
@@ -149,6 +153,7 @@ function addMessage(message, className) {
     div = document.createElement('div');
   div.className = className;
   div.textContent = message;
+  div.style.color = "white";
   chatbox.appendChild(div);
 }
 function checkRoom(){
