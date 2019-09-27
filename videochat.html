@@ -66,7 +66,7 @@ video {
 	<script src="//cdn.temasys.io/skylink/skylinkjs/0.6.x/skylink.complete.js"></script>
 </head>
 <body onload="">
-  <input type="text" id="name" placeholder="My name"></input><button onclick="setName()">Set Name</button><input id="roomID" placeholder="Room Code" /><button onclick="localStorage.setItem('roomID', document.getElementById('roomID').value); document.location.reload(true)">Set Room ID</button><span style="color:white;">Default room id is MjM523</span>
+  <input type="text" id="name" placeholder="My name" maxlength="30"></input><button onclick="setName()">Set Name</button><input id="roomID" placeholder="Room Code" /><button onclick="localStorage.setItem('roomID', document.getElementById('roomID').value); document.location.reload(true)">Set Room ID</button><span style="color:white;">Default room id is MjM523</span>
   <p id="status">Loading room information...</p><br>
  <span id="vids">
   <span id="start">
