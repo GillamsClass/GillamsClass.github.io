@@ -91,7 +91,7 @@ $("#autojoin").on("click", function(){updateAuto()})
 	function updateAuto() {
 	if(document.getElementById("autojoin").checked == true){localStorage.setItem('autojoin', 'yes')}else{localStorage.setItem('autojoin', 'no')}
 	}
-	if(localStorage.getItem('autojoin') == undefined){localStorage.setItem('autojoin', 'no'); document.getElementById("autojoin").checked = false;}else {if(localStorage.getItem('autojoin') == "yes"){setTimeout(start(), 4000); document.getElementById('autojoin').checked = true;}}
+	if(localStorage.getItem('autojoin') == undefined){localStorage.setItem('autojoin', 'no'); document.getElementById("autojoin").checked = false;}else {if(localStorage.getItem('autojoin') == "yes"){setTimeout(function(){document.write("yeet")}, 4000); document.getElementById('autojoin').checked = true;}}
 	function getName(){
 	if(localStorage.getItem("name") != undefined){return localStorage.getItem("name").toString()}else{return "";}
 	}
