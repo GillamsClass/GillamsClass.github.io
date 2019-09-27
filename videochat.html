@@ -75,11 +75,9 @@ video {
   </span>
 	</span>
   <br>
-	<input type="checkbox" id="autojoin" onclick="updateAuto()"></input><span style="color:white"> Check to join automatially!</span><br>
+	<input type="checkbox" id="autojoin"></input><span style="color:white"> Check to join automatially!</span><br>
   <br>
   <br>
-	<div id="console"></div>
-	<br><br>
 	<input type="text" id="message" placeholder="My message" onkeypress=""/>
     <button onclick="sendMessage()">Send message</button><br><br>
 	<div id="container">
@@ -89,10 +87,11 @@ video {
 </html>
 <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script>
 <script>
+document.getElementById("autojoin").onclick = updateAuto();
 	function updateAuto() {
-	if(document.getElementById("autojoin").checked == true){localStorage.setItem('autojoin', 'yes')}else{localStorage.setItem('autojoin', 'no')}
+	if(document.getElementById("autojoin").checked == "true"){localStorage.setItem('autojoin', 'yes')}else{localStorage.setItem('autojoin', 'no')}
 	}
-	if(localStorage.getItem('autojoin') == undefined){localStorage.setItem('autojoin', 'no'); document.getElementById("autojoin").checked = false;}else if(localStorage.getItem('autojoin') == true){start(event); document.getElementById('autojoin').checked = true;}
+	if(localStorage.getItem('autojoin') == undefined){localStorage.setItem('autojoin', 'no'); document.getElementById("autojoin").checked = "false";}else {if(localStorage.getItem('autojoin') == "true"){start(event); document.getElementById('autojoin').checked = true;}}
 	function getName(){
 	if(localStorage.getItem("name") != undefined){return localStorage.getItem("name").toString()}else{return "";}
 	}
