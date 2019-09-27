@@ -27,7 +27,7 @@ header a:first-child {
 video {
   width: 267px;
   height: 200px;
-  border: 1px solid white;
+  border: 1px solid black;
   outline: 1px solid #ccc;
   z-index: 5;
   display:inline;
@@ -61,7 +61,7 @@ video {
   
 	<script src="//cdn.temasys.io/skylink/skylinkjs/0.6.x/skylink.complete.js"></script>
 </head>
-<body onload="document.getElementByID('roomID').value = checkRoom();">
+<body onload="">
   <input type="text" id="name" placeholder="My name"></input><button onclick="setName()">Set Name</button><input id="roomID" placeholder="Room Code" /><button onclick="localStorage.setItem('roomID', document.getElementById('roomID').value); document.location.reload(true)">Set Room ID</button><span>Default room id is MjM523</span>
   <p id="status">Loading room information...</p><br>
  <span id="vids">
@@ -86,6 +86,7 @@ function didTheyHitEnter(e){
 if(e.characterCode == 13){sendMessage()}
 }
 var skylink = new Skylink();
+document.getElementById("roomID").value = checkRoom();
 skylink.setLogLevel(4);
 skylink.on('peerJoined', function (peerId, peerInfo, isSelf) {
   if (isSelf) return; // We already have a video element for our video and don't need to create a new one.
@@ -153,7 +154,7 @@ function addMessage(message, className) {
 function checkRoom(){
 if(localStorage.getItem("roomID") == undefined){
 return 'MjM523';
-}else{return localStorage.getItem("roomID");}}
+}else{return localStorage.getItem("roomID").toString();}}
 skylink.init({
   apiKey: '910a8640-a855-40ff-80bd-8e031adf9d68', // Get your own key at https://console.temasys.io
   defaultRoom: checkRoom() //getRoomId()
