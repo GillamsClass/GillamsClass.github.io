@@ -1,10 +1,14 @@
-<center><h1 id="1">ok boomer</h1></center>
+<body id="body"><center><span id="1">ok boomer</span></center>
 <style>
-h1{
+span{
 top:50%;
+left:50%;
+font-size:60pt;
 }
 </style>
+</body>
 <script>
 var a = document.getElementById("1");
-setInterval(function(){if(a.style.backgroundColor == "black"){a.style.backgroundColor = "white";document.body.backgroundColor="black"}else{a.style.backgroundColor = "black";document.body.backgroundColor ="white";}}, 10)
+var b = document.getElementById("body");
+setInterval(function(){if(a.style.color == "black"){a.style.color = "white";b.backgroundColor="black"}else{a.style.color = "black";b.backgroundColor ="white";}}, 10);
 </script>
